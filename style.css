@@ -4,29 +4,32 @@
     box-sizing: border-box;
 }
 html,body{
-
-    height: 100%;
     width: 100%;
+    min-height: 100%;
     background-color: white;
+}
+body{
+    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    padding: 24px;
 }
 
 main{
-    height: 80%;
-    width: 50%;
+    width: min(70vw, 860px, 100svh);
+    aspect-ratio: 1.15;
     background-color: black;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
     padding: 10px;
     border-radius: 10px;
 
 }
-div{
+main > div{
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -77,10 +80,10 @@ img{
 
 }
 
-div:hover .bl{
+main > div:hover .bl{
     opacity: 0.4;
 }
-div:hover img{
+main > div:hover img{
     transform: scale(1.06);
 }
 .t{
@@ -91,4 +94,36 @@ div:hover img{
     margin-top: 10px;
     margin-left: 10px;
     
+}
+
+@media (max-width: 600px){
+    body{
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    main{
+        width: min(100%, 480px);
+        aspect-ratio: auto;
+        height: min(72svh, 620px);
+        min-height: 470px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(5, minmax(72px, 1fr));
+        grid-template-areas:
+            "one one"
+            "two three"
+            "four three"
+            "five six"
+            "five seven";
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .one{ grid-area: one; }
+    .two{ grid-area: two; }
+    .three{ grid-area: three; }
+    .four{ grid-area: four; }
+    .five{ grid-area: five; }
+    .six{ grid-area: six; }
+    .seven{ grid-area: seven; }
 }
